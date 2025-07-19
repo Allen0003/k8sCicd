@@ -1,0 +1,61 @@
+
+
+cicd demo
+commit 之後觸發 github action 自動進行測試，
+自動進行build 跟 自動產生image
+自動更新 render (Deploy Hook)
+
+以上是 .github/workflows/ci.yml 的設定
+
+
+//free service
+https://dashboard.render.com/
+
+
+以下是hello world
+https://tsmcspringdemo-latest.onrender.com/hello
+
+
+Git push
+↓
+GitHub Actions
+├── mvn test
+├── docker build
+├── docker push ghcr.io/allen0003/tsmcspringdemo:latest
+└── curl -X POST <Render webhook>
+↓
+Render 拉最新 image → deploy
+↓
+你在網址測試 →
+https://tsmcspringdemo-latest.onrender.com/hello
+
+加上測試報告 jacoco pom + 參數即可
+
+
+
+git hub build status
+https://github.com/Allen0003/tsmcSpringDemo/actions/runs/16315115799
+
+render home page
+https://dashboard.render.com/web/srv-d1nqn8jipnbc73b13a2g/settings
+
+
+TODO:
+
+1. 加 MySQL 連線測試  （目前卡在這）
+2. 加前端 CI/CD（例如 Angular）
+3. 前後端整合成多容器 Docker Compose
+4. 轉進 Kubernetes
+   i. 把 docker-compose.yml 拆成 K8s 的 Deployment + Service YAML
+   ii. 每個 component（前端 / 後端 / DB）都做成 Pod
+
+若要練習部署，可用：
+
+    本地：Minikube / Kind
+
+    雲端：Render（有限支援）、Railway、GKE、Koyeb、Fly.io
+
+再配上 GitHub Actions push .yaml 自動 apply
+
+
+
