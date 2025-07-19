@@ -1,4 +1,13 @@
 
+momo
+
+docker image 要全小寫
+
+dockerfile backend 要一個 frontend 要一個
+
+丟上github action build image要自動再丟到 GHCR 需要麻煩token
+
+
 
 cicd demo
 commit 之後觸發 github action 自動進行測試，
