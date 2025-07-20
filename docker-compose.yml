@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: ./backend/k8sCicd
+    container_name: backend
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://dpg-d1tm3ujipnbc73cfr15g-a.oregon-postgres.render.com/cicd_9j6d
+      SPRING_DATASOURCE_USERNAME: cicd_9j6d_user
+      SPRING_DATASOURCE_PASSWORD: Om1vfFXo8q6KXZgfswJZUpAlcS9OenRA
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: frontend
+    ports:
+      - "4200:80"
