@@ -3,11 +3,44 @@ momo
 
 docker image 要全小寫
 
-dockerfile backend 要一個 frontend 要一個
+dockerfile backend 要一個  frontend 也要一個
 
 丟上github action build image要自動再丟到 GHCR 需要麻煩token
 
 github image 轉 public https://github.com/Allen0003?tab=packages
+
+frontend 直接丟成靜態網頁上去
+
+render api key 丟到 github action
+
+
+frontend 如果用成 image
+
+前端改為 Web Service（使用 Docker image）
+ 可以模擬未來用 Kubernetes 多容器架構
+
+
+
+Backend
+
+    Build JAR
+
+    Build Docker Image
+
+    Push 到 GitHub Container Registry
+
+    觸發 Render 後端部署 Hook
+
+Frontend
+
+    Build Angular App
+
+    Build Docker Image（含 Nginx）（靜態）
+
+    Push 到 GitHub Container Registry
+
+    觸發 Render 前端部署 Hook
+
 
 
 
@@ -53,9 +86,13 @@ https://dashboard.render.com/web/srv-d1nqn8jipnbc73b13a2g/settings
 
 TODO:
 
-1. 加 MySQL 連線測試  （目前卡在這）
-2. 加前端 CI/CD（例如 Angular）
-3. 前後端整合成多容器 Docker Compose
+1. 加 Postgres 連線測試
+2. 加前端 CI/CD（例如 Angular）（一樣用成靜態網頁）
+2.1 非靜態網頁 Next.js（SSR） （還沒）
+
+2. 前後端自動測試 （還沒）
+
+3. 前後端整合成多容器 Docker Compose  (到這邊 然後 前端要改成用 image + web service)
 4. 轉進 Kubernetes
    i. 把 docker-compose.yml 拆成 K8s 的 Deployment + Service YAML
    ii. 每個 component（前端 / 後端 / DB）都做成 Pod
@@ -69,4 +106,44 @@ TODO:
 再配上 GitHub Actions push .yaml 自動 apply
 
 
+
+你可以告訴我以下任一個，我可以帶你往下一步走：
+
+1. 前後端之間怎麼串 API（例如前端呼叫後端 /api/users）
+
+2. 要部署這個 Docker Compose 到 Render（但 Render 不支援 Docker Compose，我可以教你改成 Kubernetes 或拆開部署）
+
+
+✅ 多容器 CI/CD 架構（總覽）
+
+你的情境：
+
+    前端（Angular）➡️ Build 成靜態網頁 ➡️ 放入 Nginx Docker image
+
+    後端（Spring Boot）➡️ Build 成 .jar ➡️ 放入 JDK Docker image
+
+    用 Docker Compose 整合兩者
+
+    Push 到 GitHub Container Registry（或 Docker Hub）
+
+    Trigger Render 或其他平台部署
+
+
+
+✅ 測試階段  加入單元測試、e2e 測試   前端可用 ng test, 後端用 JUnit
+✅ 分環境部署 區分 staging 和 production 分支  push 到不同分支，部署到不同服務
+✅ 自動化通知 部署成功後通知 Slack/Line/email    加一個 curl webhook 送通知
+
+
+
+
+-------------------k8s 之前多容器化完整版本
+
+🧠 你目前的 CI/CD 能力包含：
+能力  狀態
+✅ 多容器支援 前後端各自打包、部署
+✅ 自動建構 Docker image 兩邊都自動 build
+✅ 自動部署  Render webhook trigger
+✅ 私有 image 推送   使用 GHCR + Secret
+✅ 獨立容器部署    前後端在 Render 各自服務跑 Docker 容器
 
