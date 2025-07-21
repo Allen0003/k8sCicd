@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend
+          image: ghcr.io/allen0003/k8scicd:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:postgresql://dpg-d1tm3ujipnbc73cfr15g-a.oregon-postgres.render.com/cicd_9j6d
+            - name: SPRING_DATASOURCE_USERNAME
+              value: cicd_9j6d_user
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: Om1vfFXo8q6KXZgfswJZUpAlcS9OenRA
