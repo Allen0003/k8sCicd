@@ -66,6 +66,27 @@ jobs:
         run: npm run build -- --configuration production
         working-directory: ./frontend
 
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.CR_PAT }}
+
+      - name: Build frontend Docker image
+        run: |
+          IMAGE_NAME=ghcr.io/${{ github.repository_owner }}/k8scicd-frontend:latest
+          IMAGE_NAME_LOWER=$(echo $IMAGE_NAME | tr '[:upper:]' '[:lower:]')
+          docker build -t $IMAGE_NAME_LOWER .
+        working-directory: ./frontend
+
+      - name: Push frontend Docker image
+        run: |
+          IMAGE_NAME=ghcr.io/${{ github.repository_owner }}/k8scicd-frontend:latest
+          IMAGE_NAME_LOWER=$(echo $IMAGE_NAME | tr '[:upper:]' '[:lower:]')
+          docker push $IMAGE_NAME_LOWER
+
+
       - name: Trigger Render Frontend Deploy Hook
         run: curl -X POST ${{ secrets.RENDER_FRONT_DEPLOY_HOOK_URL }}
 
