@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: backend-config
+data:
+  DB_URL: jdbc:postgresql://dpg-d1tm3ujipnbc73cfr15g-a.oregon-postgres.render.com/cicd_9j6d
+  DB_USERNAME: cicd_9j6d_user
