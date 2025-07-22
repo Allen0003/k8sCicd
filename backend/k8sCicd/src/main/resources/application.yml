@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:postgresql://dpg-d1tm3ujipnbc73cfr15g-a.oregon-postgres.render.com/cicd_9j6d
-    username: cicd_9j6d_user
-    password: Om1vfFXo8q6KXZgfswJZUpAlcS9OenRA
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
 
   jpa:
