@@ -1,4 +1,14 @@
 spring:
+
+  management:
+    endpoint:
+      health:
+        show-details: always
+    endpoints:
+      web:
+        exposure:
+          include: health,info
+
   datasource:
     url: ${DB_URL}
     username: ${DB_USERNAME}
