@@ -1,0 +1,11 @@
+<h2>Current Items</h2>
+<ul class="items">
+    <li *ngFor="let item of inventoryArr"
+        [class.selected] = "item === selectedItem"
+        (click) = "onSelect(item)">
+        <span class="badge">{{item.name}} </span> 
+        <span class="remaining">{{item.num}} </span> 
+    </li>
+</ul>
+
+<app-order [item] = "selectedItem"></app-order>
