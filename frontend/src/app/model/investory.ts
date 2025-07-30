@@ -1,7 +1,8 @@
-export class Inventory {
-    code: string | undefined;
-    name: string | undefined;
-    num: number | undefined; //remainding num
-    desc: string | undefined;
-    color: string | undefined;
+export interface Inventory {
+    code: string;
+    name: string;
+    leftNum: number; //remainding num
+    desc: string;
+    color: string;
+    curNun: number;
 }

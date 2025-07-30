@@ -1,4 +1,3 @@
-<!-- Product #1 -->
 <div class="item" *ngFor="let item of inventoryArr" >
     <div class="description"  (click)="onSelect(item)">
         <span>{{item.name}}</span>
@@ -7,19 +6,17 @@
     </div>
 
     <div class="quantity">
-        <button class="plus-btn" type="button" name="button">
+        <button class="plus-btn" type="button" name="button" (click)="add(item)">
             +
         </button>
-        <input type="text" name="name" value="1">
-        <button class="minus-btn" type="button" name="button">
+        {{item.curNun}}
+        <button class="minus-btn" type="button" name="button" (click)="sub(item)">
             -
         </button>
     </div>
-    <div class="toCart"> <input type="button" value="to cart"></div>
-    <div class="remaining"> {{item.num}} left</div>
+    
+    <div class="remaining"> {{item.leftNum}} left</div>
 </div>
-
-
 
 
 
