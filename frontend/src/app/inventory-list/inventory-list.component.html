@@ -1,11 +1,26 @@
-<h2>Current Items</h2>
-<ul class="items">
-    <li *ngFor="let item of inventoryArr"
-        [class.selected] = "item === selectedItem"
-        (click) = "onSelect(item)">
-        <span class="badge">{{item.name}} </span> 
-        <span class="remaining">{{item.num}} </span> 
-    </li>
-</ul>
+<!-- Product #1 -->
+<div class="item" *ngFor="let item of inventoryArr" >
+    <div class="description"  (click)="onSelect(item)">
+        <span>{{item.name}}</span>
+        <span>{{item.desc}}</span>
+        <span>{{item.color}}</span>
+    </div>
 
-<app-order [item] = "selectedItem"></app-order>
+    <div class="quantity">
+        <button class="plus-btn" type="button" name="button">
+            +
+        </button>
+        <input type="text" name="name" value="1">
+        <button class="minus-btn" type="button" name="button">
+            -
+        </button>
+    </div>
+    <div class="toCart"> <input type="button" value="to cart"></div>
+    <div class="remaining"> {{item.num}} left</div>
+</div>
+
+
+
+
+
+<app-order [item]="selectedItem"></app-order>

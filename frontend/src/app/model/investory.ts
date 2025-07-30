@@ -3,4 +3,5 @@ export class Inventory {
     name: string | undefined;
     num: number | undefined; //remainding num
     desc: string | undefined;
+    color: string | undefined;
 }

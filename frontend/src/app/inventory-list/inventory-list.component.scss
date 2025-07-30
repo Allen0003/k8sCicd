@@ -1,63 +1,88 @@
-.selected {
-    background-color: #CFD8DC !important;
-    color: white;
+.item {
+    padding: 20px 30px;
+    height: 120px;
+    display: flex;
 }
 
-.items {
-    margin: 0 0 2em 0;
-    list-style-type: none;
-    padding: 0;
-    width: 15em;
+.item:nth-child(3) {
+    border-top: 1px solid #E1E8EE;
+    border-bottom: 1px solid #E1E8EE;
 }
 
-.items li {
-    cursor: pointer;
-    position: relative;
-    left: 0;
-    background-color: #EEE;
-    margin: .5em;
-    padding: .3em 0;
-    height: 1.6em;
-    border-radius: 4px;
-}
 
-.items li:hover {
-    color: #607D8B;
-    border-color: #DDD;
-    left: .1em;
-}
-
-.items .text {
-    position: relative;
-    top: -3px;
-}
-
-.itmes .badge {
-    display: inline-block;
-    font-size: small;
-    color: white;
-    text-align: left;
-    padding: 0.8em 0.7em 0 0.7em;
-    background-color: #607D8B;
-    line-height: 1em;
-    position: relative;
-    left: -1px;
-    top: -4px;
-    height: 1.8em;
-    margin-right: .8em;
-    border-radius: 4px 0 0 4px;
-}
-
-.itmes .remaining {
-    display: inline-block;
-    font-size: small;
-    color: white;
+.remaining {
+    width: 360px;
+    padding-top: 27px;
     text-align: right;
-    background-color: #607D8B;
-    line-height: 1em;
-    position: relative;
-    height: 1.8em;
-    margin-right: .8em;
-    border-radius: 4px 0 0 4px;
-    padding-left: 140px;
+    font-size: 16px;
+    color: red;
+    font-weight: 300;
+    float: right;
 }
+
+.toCart {
+    width: 30px;
+    padding-top: 27px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+
+
+
+.description {
+  padding-top: 10px;
+  margin-right: 60px;
+  width: 115px;
+}
+
+.description span {
+  display: block;
+  font-size: 14px;
+  color: #43484D;
+  font-weight: 400;
+}
+
+.description span:first-child {
+  margin-bottom: 5px;
+}
+.description span:last-child {
+  font-weight: 300;
+  margin-top: 8px;
+  color: #86939E;
+}
+
+.quantity {
+  padding-top: 20px;
+  margin-right: 60px;
+}
+.quantity input {
+  border: none;
+  text-align: center;
+  width: 32px;
+  font-size: 16px;
+  color: #43484D;
+  font-weight: 300;
+}
+
+button[class*=btn] {
+  width: 30px;
+  height: 30px;
+  background-color: #E1E8EE;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+.minus-btn img {
+  margin-bottom: 3px;
+}
+.plus-btn img {
+  margin-top: 2px;
+}
+button:focus,
+input:focus {
+  outline:0;
+}
+
+
