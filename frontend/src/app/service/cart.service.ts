@@ -11,6 +11,12 @@ export class CartService {
   private cartSubject = new BehaviorSubject<Inventory[]>([]);
   cart$ = this.cartSubject.asObservable();
 
+
+  checkout = false;
+  private checkoutSubject = new BehaviorSubject<boolean>(false);
+  checkout$ = this.checkoutSubject.asObservable();
+
+
   add(item: Inventory): void {
     if (item.curNun != undefined && item.leftNum != undefined) {
       if (item.curNun < item.leftNum) {
@@ -41,5 +47,9 @@ export class CartService {
     }
   }
 
-
+  display(): void {
+    this.checkout = !this.checkout;
+    this.checkoutSubject.next(this.checkout);
+  }
+  
 }

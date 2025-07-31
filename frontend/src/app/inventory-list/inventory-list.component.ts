@@ -15,13 +15,16 @@ export class InventoryListComponent implements OnInit {
   inventoryArr = InventoryList;
 
   selectedItem: Inventory | undefined;
-
-  cartList: Inventory[] = [];
+  checkout = false;
 
   constructor(private cartService: CartService) { }
 
-  ngOnInit(): void {
+  cartItems: Inventory[] = [];
 
+  ngOnInit(): void {
+    this.cartService.checkout$.subscribe(checkout => {
+      this.checkout = checkout;
+    });
   }
 
   onSelect(item: Inventory): void {
@@ -35,6 +38,5 @@ export class InventoryListComponent implements OnInit {
   sub(item: Inventory): void {
     this.cartService.sub(item);
   }
-
 
 }

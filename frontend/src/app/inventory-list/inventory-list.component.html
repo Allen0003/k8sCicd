@@ -1,5 +1,5 @@
-<div class="item" *ngFor="let item of inventoryArr" >
-    <div class="description"  (click)="onSelect(item)">
+<div class="item" *ngFor="let item of inventoryArr">
+    <div class="description" (click)="onSelect(item)">
         <span>{{item.name}}</span>
         <span>{{item.desc}}</span>
         <span>{{item.color}}</span>
@@ -14,10 +14,13 @@
             -
         </button>
     </div>
-    
+
     <div class="remaining"> {{item.leftNum}} left</div>
 </div>
 
 
 
 <app-order [item]="selectedItem"></app-order>
+
+
+<app-checkout *ngIf="checkout"> </app-checkout>

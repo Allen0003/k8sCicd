@@ -17,8 +17,9 @@ export class CartComponent {
   popCart(): void {
     this.cartService.cart$.subscribe(items => {
       this.cartItems = items;
-      console.log('Cart Items:', this.cartItems);
     });
+
+    this.cartService.display();
   }
 
 
