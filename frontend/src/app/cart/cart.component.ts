@@ -14,7 +14,6 @@ export class CartComponent {
 
   constructor(private cartService: CartService) { }
 
-  //FIXME 還沒收到
   popCart(): void {
     this.cartService.cart$.subscribe(items => {
       this.cartItems = items;

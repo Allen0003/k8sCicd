@@ -15,9 +15,31 @@ export class CartService {
     if (item.curNun != undefined && item.leftNum != undefined) {
       if (item.curNun < item.leftNum) {
         item.curNun++;
-        this.cartList.push(item);
+        if (item.curNun == 1) {
+          this.cartList.push(item);
+        }
         this.cartSubject.next(this.cartList);
       }
     }
   }
+
+  sub(item: Inventory): void {
+    if (item.curNun != undefined) {
+      if (item.curNun > 0) {
+        item.curNun--;
+        if (item.curNun == 0) {
+          var idx = 0;
+          this.cartList.forEach((cur, index) => {
+            if (cur.curNun == 0) {
+              idx = index;
+            }
+          });
+          this.cartList.splice(idx, 1);
+          this.cartSubject.next(this.cartList);
+        }
+      }
+    }
+  }
+
+
 }

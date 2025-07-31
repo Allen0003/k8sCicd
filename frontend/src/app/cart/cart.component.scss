@@ -1,0 +1,49 @@
+
+.cart-icon {
+  position: relative;
+  width: 60px;
+  height: 40px;
+  margin: 20px;
+  cursor: pointer;
+}
+
+/* 購物車主體 */
+.cart-body {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  width: 40px;
+  height: 20px;
+  background-color: #653899;
+  border-radius: 4px;
+}
+
+/* 握把 */
+.cart-handle {
+  position: absolute;
+  top: 0;
+  left: 5px;
+  width: 10px;
+  height: 20px;
+  border-left: 4px solid #653899;
+  border-top: 4px solid #653899;
+  border-top-left-radius: 4px;
+}
+
+/* 輪子 */
+.cart-wheel {
+  position: absolute;
+  bottom: 0;
+  width: 10px;
+  height: 10px;
+  background-color: #333;
+  border-radius: 50%;
+}
+
+.cart-wheel.left {
+  left: 10px;
+}
+
+.cart-wheel.right {
+  right: 10px;
+}
