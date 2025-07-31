@@ -1,10 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CartService } from '../service/cart.service';
+import { Inventory } from '../model/investory';
 
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.scss']
 })
-export class CheckoutComponent {
+export class CheckoutComponent implements OnInit {
+
+  checkoutItems: Inventory[] = [];
+
+  constructor(private cartService: CartService) { }
+
+  ngOnInit(): void {
+    this.cartService.cart$.subscribe(items => {
+      this.checkoutItems = items;
+    });
+  }
+
+  //TODO connect to back end
+  checkout(): void {
+    console.log(this.checkoutItems);
+  }
+
+
+
+
 
 }
