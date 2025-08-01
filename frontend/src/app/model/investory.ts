@@ -2,7 +2,7 @@ export interface Inventory {
     code: string;
     name: string;
     leftNum: number; //remainding num
-    desc: string;
+    description: string;
     color: string;
-    curNun: number;
+    curNum: number;
 }

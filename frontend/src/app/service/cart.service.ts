@@ -2,11 +2,18 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Inventory } from '../model/investory';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
+
+  //FIXME
+  private baseUrl = 'http://localhost:8081/item';
+
+
   private cartList: Inventory[] = [];
   private cartSubject = new BehaviorSubject<Inventory[]>([]);
   cart$ = this.cartSubject.asObservable();
@@ -16,12 +23,18 @@ export class CartService {
   private checkoutSubject = new BehaviorSubject<boolean>(false);
   checkout$ = this.checkoutSubject.asObservable();
 
+  constructor(private http: HttpClient) { }
+
+  getInventoryList(): Observable<Inventory[]> {
+    return this.http.get<Inventory[]>(`${this.baseUrl}/list`);
+  }
+
 
   add(item: Inventory): void {
-    if (item.curNun != undefined && item.leftNum != undefined) {
-      if (item.curNun < item.leftNum) {
-        item.curNun++;
-        if (item.curNun == 1) {
+    if (item.curNum != undefined && item.leftNum != undefined) {
+      if (item.curNum < item.leftNum) {
+        item.curNum++;
+        if (item.curNum == 1) {
           this.cartList.push(item);
         }
         this.cartSubject.next(this.cartList);
@@ -30,13 +43,13 @@ export class CartService {
   }
 
   sub(item: Inventory): void {
-    if (item.curNun != undefined) {
-      if (item.curNun > 0) {
-        item.curNun--;
-        if (item.curNun == 0) {
+    if (item.curNum != undefined) {
+      if (item.curNum > 0) {
+        item.curNum--;
+        if (item.curNum == 0) {
           var idx = 0;
           this.cartList.forEach((cur, index) => {
-            if (cur.curNun == 0) {
+            if (cur.curNum == 0) {
               idx = index;
             }
           });
@@ -51,5 +64,5 @@ export class CartService {
     this.checkout = !this.checkout;
     this.checkoutSubject.next(this.checkout);
   }
-  
+
 }

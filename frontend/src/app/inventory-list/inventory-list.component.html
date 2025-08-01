@@ -1,7 +1,7 @@
 <div class="item" *ngFor="let item of inventoryArr">
     <div class="description" (click)="onSelect(item)">
         <span>{{item.name}}</span>
-        <span>{{item.desc}}</span>
+        <span>{{item.description}}</span>
         <span>{{item.color}}</span>
     </div>
 
@@ -9,7 +9,7 @@
         <button class="plus-btn" type="button" name="button" (click)="add(item)">
             +
         </button>
-        {{item.curNun}}
+        {{item.curNum}}
         <button class="minus-btn" type="button" name="button" (click)="sub(item)">
             -
         </button>

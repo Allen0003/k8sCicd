@@ -12,7 +12,7 @@ import { CartService } from '../service/cart.service';
 
 
 export class InventoryListComponent implements OnInit {
-  inventoryArr = InventoryList;
+  inventoryArr : Inventory[] = []; 
 
   selectedItem: Inventory | undefined;
   checkout = false;
@@ -22,6 +22,17 @@ export class InventoryListComponent implements OnInit {
   cartItems: Inventory[] = [];
 
   ngOnInit(): void {
+    this.cartService.getInventoryList().subscribe({
+      next: (data) => {
+         this.inventoryArr = data;
+      },
+      error: (err) => {
+        this.inventoryArr = InventoryList;
+      }
+    });
+
+
+
     this.cartService.checkout$.subscribe(checkout => {
       this.checkout = checkout;
     });
