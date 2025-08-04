@@ -1,9 +1,10 @@
-// 正確做法：把共用資料邏輯移到一個真正的 Service
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Inventory } from '../model/investory';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ import { Observable } from 'rxjs';
 export class CartService {
 
   //FIXME
-  private baseUrl = 'http://localhost:8081/item';
+  private baseUrl = environment.apiBaseUrl;
 
 
   private cartList: Inventory[] = [];
@@ -26,7 +27,7 @@ export class CartService {
   constructor(private http: HttpClient) { }
 
   getInventoryList(): Observable<Inventory[]> {
-    return this.http.get<Inventory[]>(`${this.baseUrl}/list`);
+    return this.http.get<Inventory[]>(`${this.baseUrl}/item/list`);
   }
 
 
