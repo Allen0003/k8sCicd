@@ -11,23 +11,37 @@ import { environment } from '../../environments/environment';
 })
 export class CartService {
 
-  //FIXME
-  private baseUrl = environment.apiBaseUrl;
-
-
   private cartList: Inventory[] = [];
   private cartSubject = new BehaviorSubject<Inventory[]>([]);
   cart$ = this.cartSubject.asObservable();
 
 
-  checkout = false;
+  checkoutFlag = false;
   private checkoutSubject = new BehaviorSubject<boolean>(false);
   checkout$ = this.checkoutSubject.asObservable();
 
   constructor(private http: HttpClient) { }
 
   getInventoryList(): Observable<Inventory[]> {
-    return this.http.get<Inventory[]>(`${this.baseUrl}/item/list`);
+    return this.http.get<Inventory[]>(`${environment.apiEndpoints.item}${environment.apiPaths.itemList}`);
+  }
+
+  init(): void {
+    this.http.get<any>(`${environment.apiEndpoints.item}${environment.apiPaths.initItem}`)
+      .subscribe({
+        next: (res) => console.log('Init success', res),
+        error: (err) => console.error('Init failed', err)
+      });
+  }
+
+
+  checkout(checkoutItems: Inventory[]): void {
+    this.http.post<any>(`${environment.apiEndpoints.checkout}${environment.apiPaths.checkout}`, checkoutItems)
+      .subscribe(
+        response => {
+        }, error => {
+        }
+      );
   }
 
 
@@ -62,8 +76,7 @@ export class CartService {
   }
 
   display(): void {
-    this.checkout = !this.checkout;
-    this.checkoutSubject.next(this.checkout);
+    this.checkoutFlag = !this.checkoutFlag;
+    this.checkoutSubject.next(this.checkoutFlag);
   }
-
 }

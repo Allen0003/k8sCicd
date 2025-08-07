@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { CartService } from './service/cart.service';
+
+
 
 @Component({
   selector: 'app-root',
@@ -7,4 +10,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Shopping Bag';
+
+  constructor(private cartService: CartService) { }
+
+  init(): void {
+    this.cartService.init();
+    console.log('aaa');
+  }
+
+
 }

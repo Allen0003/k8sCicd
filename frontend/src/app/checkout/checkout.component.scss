@@ -1,0 +1,18 @@
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.checkout-btn {
+  background-color: #317e9d;  
+  color: white;
+
+  &:hover {
+    background-color: #2b86a1;
+  }
+}

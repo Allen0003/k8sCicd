@@ -15,7 +15,7 @@ export class InventoryListComponent implements OnInit {
   inventoryArr : Inventory[] = []; 
 
   selectedItem: Inventory | undefined;
-  checkout = false;
+  checkoutFlag = false;
 
   constructor(private cartService: CartService) { }
 
@@ -33,8 +33,8 @@ export class InventoryListComponent implements OnInit {
 
 
 
-    this.cartService.checkout$.subscribe(checkout => {
-      this.checkout = checkout;
+    this.cartService.checkout$.subscribe(checkoutFlag => {
+      this.checkoutFlag = checkoutFlag;
     });
   }
 

@@ -19,13 +19,8 @@ export class CheckoutComponent implements OnInit {
     });
   }
 
-  //TODO connect to back end
   checkout(): void {
-    console.log(this.checkoutItems);
+    this.cartService.checkout(this.checkoutItems);
   }
-
-
-
-
 
 }
