@@ -2,7 +2,10 @@ name: Build and Push Docker Image + Deploy Frontend
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
+      - develop
+      - "feature/*"   # 任何 feature 分支 push 都觸發
 
 jobs:
   build-backend:
