@@ -22,5 +22,5 @@ export class CheckoutComponent implements OnInit {
   checkout(): void {
     this.cartService.checkout(this.checkoutItems);
   }
-//test
+//test2
 }
