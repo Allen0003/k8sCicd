@@ -1,8 +1,3 @@
- Gemini said
-
-Here is a professional, high-quality README.md in English, optimized for GitHub. It uses clear visual hierarchy, badges, and a technical breakdown to showcase your CI/CD expertise.
-Multi-Container CI/CD Automation Project
-
 This project demonstrates a robust, automated CI/CD pipeline for a decoupled full-stack application. It focuses on containerization, automated testing, and zero-touch deployment using GitHub Actions and Render.
 
 Project Objectives
